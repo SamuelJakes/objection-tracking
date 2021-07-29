@@ -6,14 +6,14 @@ import sys
 if __name__ == '__main__' :
 
     # Check for correct argument usage
-    if len(sys.argv) < 1:
+    if len(sys.argv) < 2:
         print("Enter the location of a video file as a command line argument")
         sys.exit()
-    if len(sys.argv) > 1:
+    if len(sys.argv) > 2:
         print("Please enter exactly one command line argument - the location of a video file")
         sys.exit()
 
-    videoFile = sys.argv[0]
+    videoFile = sys.argv[1]
     tracker_types = ['BOOSTING', 'MIL','KCF', 'TLD', 'MEDIANFLOW', 'GOTURN', 'MOSSE', 'CSRT']
     tracker_type = tracker_types[2]
 
@@ -73,7 +73,7 @@ if __name__ == '__main__' :
         ok, bbox = tracker.update(frame)
 
         # Calculate Frames per second (FPS)
-        fps = cv2.getTickFrequency() / (cv2.getTickCount() - timer);
+        fps = cv2.getTickFrequency() / (cv2.getTickCount() - timer)
 
         # Draw bounding box
         if ok:
@@ -86,10 +86,10 @@ if __name__ == '__main__' :
             cv2.putText(frame, "Tracking failure detected", (100,80), cv2.FONT_HERSHEY_SIMPLEX, 0.75,(0,0,255),2)
 
         # Display tracker type on frame
-        cv2.putText(frame, tracker_type + " Tracker", (100,20), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (50,170,50),2);
+        cv2.putText(frame, tracker_type + " Tracker", (100,20), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (50,170,50),2)
     
         # Display FPS on frame
-        cv2.putText(frame, "FPS : " + str(int(fps)), (100,50), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (50,170,50), 2);
+        cv2.putText(frame, "FPS : " + str(int(fps)), (100,50), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (50,170,50), 2)
 
         # Display result
         cv2.imshow("Tracking", frame)
