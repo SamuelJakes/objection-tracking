@@ -22,12 +22,11 @@ if int(tracking_inx) < 0 or int(tracking_inx) > 7:
     BadParams()
     
 # Make sure the video file is in the same directory as your code
-file_prefix = sys.argv[1]
-filename = file_prefix + '.mp4'
+filename = sys.argv[1]
 file_size = (1920,1080) # Assumes 1920x1080 mp4
  
 # We want to save the output to a video file
-output_filename = "output/" + file_prefix + '_object_tracking.mp4'
+output_filename = "output/" + filename[:-4] + '_object_tracking.mp4'
 output_frames_per_second = 60.0
  
 # OpenCV has a bunch of object tracking algorithms. We list them here.
